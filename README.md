@@ -72,7 +72,9 @@ EfficientDet-Japanese-RoadSigns
 <b>Note:</b><br>
  The Japanese_RoadSigns tfrecord in train and valid is created from the 
  <a href="https://github.com/atlan-antillia/YOLO_Annotated_Japanese_Roadsigns">YOLO_Annotated_Japanese_RoadSigns</a>
- However, the all images in the YOLO repository was resized to become 512x512 to create those japanese_roadsigns.tfrecords.
+ However, the all images in the YOLO repository was resized to become 512x512 to create those japanese_roadsigns.tfrecords.<br>
+<br>
+ See also: <a href="https://github.com/atlan-antillia/YOLO_Annotated_Japanese_Roadsigns_512x512">YOLO_Annotated_Japanese_Roadsigns_512x512</a>
 <br> 
 <br>
 
