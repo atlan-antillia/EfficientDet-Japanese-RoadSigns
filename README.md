@@ -233,5 +233,44 @@ python model_inspect.py --runmode=saved_model_infer --model_name=efficientdet-d0
 
 <br>
 <br>
+<h3>
+7. Some detection results of JapaneseRoadSigns
+</h3>
+<br>
+<br>
+<table style="border: 1px solid #000;">
+<tr><td><img src="./projects/Japanese_RoadSigns/outputs/1.jpg" width="512" height="auto"></td>
+    <td><img src="./projects/Japanese_RoadSigns/outputs/11.jpg" width="512" height="auto"></td></tr>
+
+<tr><td><img src="./projects/Japanese_RoadSigns/outputs/21.jpg" width="512" height="auto"></td>
+    <td><img src="./projects/Japanese_RoadSigns/outputs/31.jpg" width="512" height="auto"></td></tr>
+
+<tr><td><img src="./projects/Japanese_RoadSigns/outputs/41.jpg" width="512" height="auto"></td>
+    <td><img src="./projects/Japanese_RoadSigns/outputs/51.jpg" width="512" height="auto"></td></tr>
+
+<tr><td><img src="./projects/Japanese_RoadSigns/outputs/61.jpg" width="512" height="auto"></td>
+    <td><img src="./projects/Japanese_RoadSigns/outputs/71.jpg" width="512" height="auto"></td></tr>
+
+<tr><td><img src="./projects/Japanese_RoadSigns/outputs/81.jpg" width="512" height="auto"></td>
+    <td><img src="./projects/Japanese_RoadSigns/outputs/91.jpg" width="512" height="auto"></td></tr>
 
 
+<tr><td><img src="./projects/Japanese_RoadSigns/outputs/101.jpg" width="512" height="auto"></td>
+    <td><img src="./projects/Japanese_RoadSigns/outputs/111.jpg" width="512" height="auto"></td></tr>
+
+<tr><td><img src="./projects/Japanese_RoadSigns/outputs/121.jpg" width="512" height="auto"></td>
+    <td><img src="./projects/Japanese_RoadSigns/outputs/131.jpg" width="512" height="auto"></td></tr>
+
+<tr><td><img src="./projects/Japanese_RoadSigns/outputs/141.jpg" width="512" height="auto"></td>
+    <td><img src="./projects/Japanese_RoadSigns/outputs/151.jpg" width="512" height="auto"></td></tr>
+
+<tr><td><img src="./projects/Japanese_RoadSigns/outputs/161.jpg" width="512" height="auto"></td>
+    <td><img src="./projects/Japanese_RoadSigns/outputs/171.jpg" width="512" height="auto"></td></tr>
+
+<tr><td><img src="./projects/Japanese_RoadSigns/outputs/181.jpg" width="512" height="auto"></td>
+    <td><img src="./projects/Japanese_RoadSigns/outputs/191.jpg" width="512" height="auto"></td></tr>
+
+<tr><td><img src="./projects/Japanese_RoadSigns/outputs/201.jpg" width="512" height="auto"></td>
+    <td><img src="./projects/Japanese_RoadSigns/outputs/211.jpg" width="512" height="auto"></td></tr>
+
+</table>
