@@ -87,7 +87,13 @@ Please copy the files and the folders in the EfficientDet-Japanese-RoadSigns fol
   If you would like to view each annotated image in a tfrecord, you can use  
 <a href="https://github.com/jschw/tfrecord-view">tfrecord_view_gui.py</a>, or 
 <a href="https://github.com/EricThomson/tfrecord-view">view_tfrecord_tf2.py</a>.
-
+<br>
+  We have created a new <i>modified_view_tfrecord_tf2.py</i> from the original <i>view_tfrecord_tf2.py</i> to be able 
+  to accept a tfrecord file and label_map.pbtxt file on the command line.<br>
+ 
+<pre>
+python modified_view_tfrecord_tf2.py japanese_roadsigns.tfrecord label_map.pbtxt
+</pre>
 <br>
 <br>
 <table style="border: 1px solid #000;">
