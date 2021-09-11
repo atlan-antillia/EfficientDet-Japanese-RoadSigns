@@ -13,17 +13,13 @@ This is a simple python example to train and detect Japanese RoadSigns by Effici
 </h3>
 We use Python 3.7 to run tensoflow 2 on Windows10.<br>
 At first, you have to install Microsoft Visual Studio 2019 Community Edition for Windows10.<br>
-<pre>
-</pre>
-
-<br>Setting up an environment  on Windows 10.<br>
 We create and use "c:\google" folder for our project.<br>
 <pre>
 mkdir c:\google
 cd    c:\google
 pip install tensorflow==2.4.0
 </pre>
-<br>
+
 <b>Note:</b><br>
 Probably, you may have to downgrade numpy to 1.17.4.
 <br>
@@ -34,8 +30,9 @@ Probably, you may have to downgrade numpy to 1.17.4.
 We have merged our <b>EfficientDet-Japanese-RoadSigns</b> repository with <b>efficientdet</b> in 
 <a href="https://github.com/google/automl">Google Brain AutoML</a> on 2021/09/12.<br>
 Please clone EfficientDet-Japanese-RoadSigns in the working folder <b>c:\google</b>.<br>
+<pre>
 >git clone  https://github.com/atlan-antillia/EfficientDet-Japanese-RoadSigns.git<br>
-
+</pre>
 You can see the following folder <b>projects</b> in  EfficientDet-Japanese-RoadSigns folder of the working folder.<br>
 
 <pre>
