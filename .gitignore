@@ -23,6 +23,9 @@ projects/Japanese_RoadSigns/models
 *.bak
 
 wheels/
+projects/Japanese_RoadSigns/models
+efficientdet-d0/
+*.bak
 pip-wheel-metadata/
 share/python-wheels/
 *.egg-info/
