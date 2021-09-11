@@ -1,0 +1,198 @@
+
+   =====> Starting evaluation, epoch: 100.
+INFO:tensorflow:Calling model_fn.
+I0823 09:20:55.808241 12436 estimator.py:1162] Calling model_fn.
+I0823 09:20:55.809239 12436 utils.py:601] use mixed precision policy name float32
+I0823 09:20:55.810562 12436 efficientnet_builder.py:215] global_params= GlobalParams(batch_norm_momentum=0.99, batch_norm_epsilon=0.001, dropout_rate=0.2, data_format='channels_last', num_classes=1000, width_coefficient=1.0, depth_coefficient=1.0, depth_divisor=8, min_depth=None, survival_prob=0.0, relu_fn=functools.partial(<function activation_fn at 0x00000142A9D82C18>, act_type='swish'), batch_norm=<class 'utils.BatchNormalization'>, use_se=True, local_pooling=None, condconv_num_experts=None, clip_projection_output=False, blocks_args=['r1_k3_s11_e1_i32_o16_se0.25', 'r2_k3_s22_e6_i16_o24_se0.25', 'r2_k5_s22_e6_i24_o40_se0.25', 'r3_k3_s22_e6_i40_o80_se0.25', 'r3_k5_s11_e6_i80_o112_se0.25', 'r4_k5_s22_e6_i112_o192_se0.25', 'r1_k3_s11_e6_i192_o320_se0.25'], fix_head_stem=None, grad_checkpoint=False)
+I0823 09:20:55.989131 12436 efficientdet_keras.py:762] fnode 0 : {'feat_level': 6, 'inputs_offsets': [3, 4]}
+I0823 09:20:55.991136 12436 efficientdet_keras.py:762] fnode 1 : {'feat_level': 5, 'inputs_offsets': [2, 5]}
+I0823 09:20:55.992120 12436 efficientdet_keras.py:762] fnode 2 : {'feat_level': 4, 'inputs_offsets': [1, 6]}
+I0823 09:20:55.993118 12436 efficientdet_keras.py:762] fnode 3 : {'feat_level': 3, 'inputs_offsets': [0, 7]}
+I0823 09:20:55.993118 12436 efficientdet_keras.py:762] fnode 4 : {'feat_level': 4, 'inputs_offsets': [1, 7, 8]}
+I0823 09:20:55.994208 12436 efficientdet_keras.py:762] fnode 5 : {'feat_level': 5, 'inputs_offsets': [2, 6, 9]}
+I0823 09:20:55.995254 12436 efficientdet_keras.py:762] fnode 6 : {'feat_level': 6, 'inputs_offsets': [3, 5, 10]}
+I0823 09:20:55.995254 12436 efficientdet_keras.py:762] fnode 7 : {'feat_level': 7, 'inputs_offsets': [4, 11]}
+I0823 09:20:55.996253 12436 efficientdet_keras.py:762] fnode 0 : {'feat_level': 6, 'inputs_offsets': [3, 4]}
+I0823 09:20:55.997254 12436 efficientdet_keras.py:762] fnode 1 : {'feat_level': 5, 'inputs_offsets': [2, 5]}
+I0823 09:20:55.997254 12436 efficientdet_keras.py:762] fnode 2 : {'feat_level': 4, 'inputs_offsets': [1, 6]}
+I0823 09:20:55.998245 12436 efficientdet_keras.py:762] fnode 3 : {'feat_level': 3, 'inputs_offsets': [0, 7]}
+I0823 09:20:55.999243 12436 efficientdet_keras.py:762] fnode 4 : {'feat_level': 4, 'inputs_offsets': [1, 7, 8]}
+I0823 09:20:55.999243 12436 efficientdet_keras.py:762] fnode 5 : {'feat_level': 5, 'inputs_offsets': [2, 6, 9]}
+I0823 09:20:56.000242 12436 efficientdet_keras.py:762] fnode 6 : {'feat_level': 6, 'inputs_offsets': [3, 5, 10]}
+I0823 09:20:56.001237 12436 efficientdet_keras.py:762] fnode 7 : {'feat_level': 7, 'inputs_offsets': [4, 11]}
+I0823 09:20:56.001237 12436 efficientdet_keras.py:762] fnode 0 : {'feat_level': 6, 'inputs_offsets': [3, 4]}
+I0823 09:20:56.002234 12436 efficientdet_keras.py:762] fnode 1 : {'feat_level': 5, 'inputs_offsets': [2, 5]}
+I0823 09:20:56.003233 12436 efficientdet_keras.py:762] fnode 2 : {'feat_level': 4, 'inputs_offsets': [1, 6]}
+I0823 09:20:56.003233 12436 efficientdet_keras.py:762] fnode 3 : {'feat_level': 3, 'inputs_offsets': [0, 7]}
+I0823 09:20:56.004232 12436 efficientdet_keras.py:762] fnode 4 : {'feat_level': 4, 'inputs_offsets': [1, 7, 8]}
+I0823 09:20:56.005229 12436 efficientdet_keras.py:762] fnode 5 : {'feat_level': 5, 'inputs_offsets': [2, 6, 9]}
+I0823 09:20:56.008172 12436 efficientdet_keras.py:762] fnode 6 : {'feat_level': 6, 'inputs_offsets': [3, 5, 10]}
+I0823 09:20:56.009170 12436 efficientdet_keras.py:762] fnode 7 : {'feat_level': 7, 'inputs_offsets': [4, 11]}
+I0823 09:20:56.071005 12436 efficientnet_model.py:735] Built stem stem : (4, 256, 256, 32)
+I0823 09:20:56.071005 12436 efficientnet_model.py:374] Block blocks_0 input shape: (4, 256, 256, 32)
+I0823 09:20:56.088590 12436 efficientnet_model.py:393] DWConv shape: (4, 256, 256, 32)
+I0823 09:20:56.108767 12436 efficientnet_model.py:195] Built SE se : (4, 1, 1, 32)
+I0823 09:20:56.124697 12436 efficientnet_model.py:414] Project shape: (4, 256, 256, 16)
+I0823 09:20:56.124697 12436 efficientnet_model.py:374] Block blocks_1 input shape: (4, 256, 256, 16)
+I0823 09:20:56.143747 12436 efficientnet_model.py:390] Expand shape: (4, 256, 256, 96)
+I0823 09:20:56.163455 12436 efficientnet_model.py:393] DWConv shape: (4, 128, 128, 96)
+I0823 09:20:56.181407 12436 efficientnet_model.py:195] Built SE se : (4, 1, 1, 96)
+I0823 09:20:56.197320 12436 efficientnet_model.py:414] Project shape: (4, 128, 128, 24)
+I0823 09:20:56.199363 12436 efficientnet_model.py:374] Block blocks_2 input shape: (4, 128, 128, 24)
+I0823 09:20:56.215314 12436 efficientnet_model.py:390] Expand shape: (4, 128, 128, 144)
+I0823 09:20:56.234100 12436 efficientnet_model.py:393] DWConv shape: (4, 128, 128, 144)
+I0823 09:20:56.254244 12436 efficientnet_model.py:195] Built SE se : (4, 1, 1, 144)
+I0823 09:20:56.269559 12436 efficientnet_model.py:414] Project shape: (4, 128, 128, 24)
+I0823 09:20:56.270559 12436 efficientnet_model.py:374] Block blocks_3 input shape: (4, 128, 128, 24)
+I0823 09:20:56.286943 12436 efficientnet_model.py:390] Expand shape: (4, 128, 128, 144)
+I0823 09:20:56.303860 12436 efficientnet_model.py:393] DWConv shape: (4, 64, 64, 144)
+I0823 09:20:56.322818 12436 efficientnet_model.py:195] Built SE se : (4, 1, 1, 144)
+I0823 09:20:56.340314 12436 efficientnet_model.py:414] Project shape: (4, 64, 64, 40)
+I0823 09:20:56.341431 12436 efficientnet_model.py:374] Block blocks_4 input shape: (4, 64, 64, 40)
+I0823 09:20:56.357958 12436 efficientnet_model.py:390] Expand shape: (4, 64, 64, 240)
+I0823 09:20:56.374550 12436 efficientnet_model.py:393] DWConv shape: (4, 64, 64, 240)
+I0823 09:20:56.391894 12436 efficientnet_model.py:195] Built SE se : (4, 1, 1, 240)
+I0823 09:20:56.407851 12436 efficientnet_model.py:414] Project shape: (4, 64, 64, 40)
+I0823 09:20:56.408849 12436 efficientnet_model.py:374] Block blocks_5 input shape: (4, 64, 64, 40)
+I0823 09:20:56.428463 12436 efficientnet_model.py:390] Expand shape: (4, 64, 64, 240)
+I0823 09:20:56.445526 12436 efficientnet_model.py:393] DWConv shape: (4, 32, 32, 240)
+I0823 09:20:56.465682 12436 efficientnet_model.py:195] Built SE se : (4, 1, 1, 240)
+I0823 09:20:56.482617 12436 efficientnet_model.py:414] Project shape: (4, 32, 32, 80)
+I0823 09:20:56.482617 12436 efficientnet_model.py:374] Block blocks_6 input shape: (4, 32, 32, 80)
+I0823 09:20:56.500542 12436 efficientnet_model.py:390] Expand shape: (4, 32, 32, 480)
+I0823 09:20:56.518718 12436 efficientnet_model.py:393] DWConv shape: (4, 32, 32, 480)
+I0823 09:20:56.536445 12436 efficientnet_model.py:195] Built SE se : (4, 1, 1, 480)
+I0823 09:20:56.552421 12436 efficientnet_model.py:414] Project shape: (4, 32, 32, 80)
+I0823 09:20:56.553373 12436 efficientnet_model.py:374] Block blocks_7 input shape: (4, 32, 32, 80)
+I0823 09:20:56.570327 12436 efficientnet_model.py:390] Expand shape: (4, 32, 32, 480)
+I0823 09:20:56.588326 12436 efficientnet_model.py:393] DWConv shape: (4, 32, 32, 480)
+I0823 09:20:56.604237 12436 efficientnet_model.py:195] Built SE se : (4, 1, 1, 480)
+I0823 09:20:56.626850 12436 efficientnet_model.py:414] Project shape: (4, 32, 32, 80)
+I0823 09:20:56.627896 12436 efficientnet_model.py:374] Block blocks_8 input shape: (4, 32, 32, 80)
+I0823 09:20:56.645836 12436 efficientnet_model.py:390] Expand shape: (4, 32, 32, 480)
+I0823 09:20:56.666527 12436 efficientnet_model.py:393] DWConv shape: (4, 32, 32, 480)
+I0823 09:20:56.684478 12436 efficientnet_model.py:195] Built SE se : (4, 1, 1, 480)
+I0823 09:20:56.699482 12436 efficientnet_model.py:414] Project shape: (4, 32, 32, 112)
+I0823 09:20:56.700473 12436 efficientnet_model.py:374] Block blocks_9 input shape: (4, 32, 32, 112)
+I0823 09:20:56.717391 12436 efficientnet_model.py:390] Expand shape: (4, 32, 32, 672)
+I0823 09:20:56.735411 12436 efficientnet_model.py:393] DWConv shape: (4, 32, 32, 672)
+I0823 09:20:56.754355 12436 efficientnet_model.py:195] Built SE se : (4, 1, 1, 672)
+I0823 09:20:56.774302 12436 efficientnet_model.py:414] Project shape: (4, 32, 32, 112)
+I0823 09:20:56.774302 12436 efficientnet_model.py:374] Block blocks_10 input shape: (4, 32, 32, 112)
+I0823 09:20:56.791198 12436 efficientnet_model.py:390] Expand shape: (4, 32, 32, 672)
+I0823 09:20:56.812214 12436 efficientnet_model.py:393] DWConv shape: (4, 32, 32, 672)
+I0823 09:20:56.829368 12436 efficientnet_model.py:195] Built SE se : (4, 1, 1, 672)
+I0823 09:20:56.845237 12436 efficientnet_model.py:414] Project shape: (4, 32, 32, 112)
+I0823 09:20:56.846274 12436 efficientnet_model.py:374] Block blocks_11 input shape: (4, 32, 32, 112)
+I0823 09:20:56.865185 12436 efficientnet_model.py:390] Expand shape: (4, 32, 32, 672)
+I0823 09:20:56.885267 12436 efficientnet_model.py:393] DWConv shape: (4, 16, 16, 672)
+I0823 09:20:56.904267 12436 efficientnet_model.py:195] Built SE se : (4, 1, 1, 672)
+I0823 09:20:56.922257 12436 efficientnet_model.py:414] Project shape: (4, 16, 16, 192)
+I0823 09:20:56.923303 12436 efficientnet_model.py:374] Block blocks_12 input shape: (4, 16, 16, 192)
+I0823 09:20:56.944025 12436 efficientnet_model.py:390] Expand shape: (4, 16, 16, 1152)
+I0823 09:20:56.966430 12436 efficientnet_model.py:393] DWConv shape: (4, 16, 16, 1152)
+I0823 09:20:56.984611 12436 efficientnet_model.py:195] Built SE se : (4, 1, 1, 1152)
+I0823 09:20:57.001627 12436 efficientnet_model.py:414] Project shape: (4, 16, 16, 192)
+I0823 09:20:57.002624 12436 efficientnet_model.py:374] Block blocks_13 input shape: (4, 16, 16, 192)
+I0823 09:20:57.022571 12436 efficientnet_model.py:390] Expand shape: (4, 16, 16, 1152)
+I0823 09:20:57.044823 12436 efficientnet_model.py:393] DWConv shape: (4, 16, 16, 1152)
+I0823 09:20:57.063801 12436 efficientnet_model.py:195] Built SE se : (4, 1, 1, 1152)
+I0823 09:20:57.082068 12436 efficientnet_model.py:414] Project shape: (4, 16, 16, 192)
+I0823 09:20:57.083066 12436 efficientnet_model.py:374] Block blocks_14 input shape: (4, 16, 16, 192)
+I0823 09:20:57.104129 12436 efficientnet_model.py:390] Expand shape: (4, 16, 16, 1152)
+I0823 09:20:57.125409 12436 efficientnet_model.py:393] DWConv shape: (4, 16, 16, 1152)
+I0823 09:20:57.144667 12436 efficientnet_model.py:195] Built SE se : (4, 1, 1, 1152)
+I0823 09:20:57.160538 12436 efficientnet_model.py:414] Project shape: (4, 16, 16, 192)
+I0823 09:20:57.160538 12436 efficientnet_model.py:374] Block blocks_15 input shape: (4, 16, 16, 192)
+I0823 09:20:57.182528 12436 efficientnet_model.py:390] Expand shape: (4, 16, 16, 1152)
+I0823 09:20:57.208096 12436 efficientnet_model.py:393] DWConv shape: (4, 16, 16, 1152)
+I0823 09:20:57.228747 12436 efficientnet_model.py:195] Built SE se : (4, 1, 1, 1152)
+I0823 09:20:57.246480 12436 efficientnet_model.py:414] Project shape: (4, 16, 16, 320)
+I0823 09:20:59.323183 12436 det_model_fn.py:81] LR schedule method: cosine
+I0823 09:20:59.645815 12436 postprocess.py:90] use max_nms_inputs for pre-nms topk.
+I0823 09:21:01.556691 12436 det_model_fn.py:476] Eval val with groudtruths None.
+I0823 09:21:01.592617 12436 det_model_fn.py:553] Load EMA vars with ema_decay=0.999800
+INFO:tensorflow:Done calling model_fn.
+I0823 09:21:02.074273 12436 estimator.py:1164] Done calling model_fn.
+INFO:tensorflow:Starting evaluation at 2021-08-23T09:21:02Z
+I0823 09:21:02.088677 12436 evaluation.py:255] Starting evaluation at 2021-08-23T09:21:02Z
+INFO:tensorflow:Graph was finalized.
+I0823 09:21:02.519045 12436 monitored_session.py:246] Graph was finalized.
+2021-08-23 09:21:02.522069: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1720] Found device 0 with properties:
+pciBusID: 0000:01:00.0 name: NVIDIA GeForce RTX 2060 computeCapability: 7.5
+coreClock: 1.35GHz coreCount: 30 deviceMemorySize: 6.00GiB deviceMemoryBandwidth: 245.91GiB/s
+2021-08-23 09:21:02.522141: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library cudart64_110.dll
+2021-08-23 09:21:02.522182: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library cublas64_11.dll
+2021-08-23 09:21:02.522218: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library cublasLt64_11.dll
+2021-08-23 09:21:02.522252: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library cufft64_10.dll
+2021-08-23 09:21:02.522286: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library curand64_10.dll
+2021-08-23 09:21:02.522320: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library cusolver64_10.dll
+2021-08-23 09:21:02.522355: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library cusparse64_11.dll
+2021-08-23 09:21:02.522388: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library cudnn64_8.dll
+2021-08-23 09:21:02.522451: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1862] Adding visible gpu devices: 0
+2021-08-23 09:21:02.522511: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1261] Device interconnect StreamExecutor with strength 1 edge matrix:
+2021-08-23 09:21:02.522545: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1267]      0
+2021-08-23 09:21:02.522568: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1280] 0:   N
+2021-08-23 09:21:02.522684: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1406] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 4720 MB memory) -> physical GPU (device: 0, name: NVIDIA GeForce RTX 2060, pci bus id: 0000:01:00.0, compute capability: 7.5)
+2021-08-23 09:21:02.523116: I tensorflow/compiler/jit/xla_gpu_device.cc:99] Not creating XLA devices, tf_xla_enable_xla_devices not set
+INFO:tensorflow:Restoring parameters from ./projects/Japanese_RoadSigns/models\model.ckpt-5000
+I0823 09:21:02.522968 12436 saver.py:1292] Restoring parameters from ./projects/Japanese_RoadSigns/models\model.ckpt-5000
+INFO:tensorflow:Running local_init_op.
+I0823 09:21:04.802532 12436 session_manager.py:505] Running local_init_op.
+INFO:tensorflow:Done running local_init_op.
+I0823 09:21:04.902239 12436 session_manager.py:508] Done running local_init_op.
+INFO:tensorflow:Evaluation [5/50]
+I0823 09:21:16.211677 12436 evaluation.py:167] Evaluation [5/50]
+INFO:tensorflow:Evaluation [10/50]
+I0823 09:21:19.210460 12436 evaluation.py:167] Evaluation [10/50]
+INFO:tensorflow:Evaluation [15/50]
+I0823 09:21:21.630741 12436 evaluation.py:167] Evaluation [15/50]
+INFO:tensorflow:Evaluation [20/50]
+I0823 09:21:23.863671 12436 evaluation.py:167] Evaluation [20/50]
+INFO:tensorflow:Evaluation [25/50]
+I0823 09:21:26.039793 12436 evaluation.py:167] Evaluation [25/50]
+INFO:tensorflow:Evaluation [30/50]
+I0823 09:21:28.232297 12436 evaluation.py:167] Evaluation [30/50]
+INFO:tensorflow:Evaluation [35/50]
+I0823 09:21:30.232741 12436 evaluation.py:167] Evaluation [35/50]
+INFO:tensorflow:Evaluation [40/50]
+I0823 09:21:32.388974 12436 evaluation.py:167] Evaluation [40/50]
+INFO:tensorflow:Evaluation [45/50]
+I0823 09:21:34.550465 12436 evaluation.py:167] Evaluation [45/50]
+INFO:tensorflow:Evaluation [50/50]
+I0823 09:21:36.664859 12436 evaluation.py:167] Evaluation [50/50]
+creating index...
+index created!
+Loading and preparing results...
+Converting ndarray to lists...
+(20000, 7)
+0/20000
+DONE (t=0.08s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=1.78s).
+Accumulating evaluation results...
+DONE (t=1.24s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.782
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.885
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.885
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = -1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = -1.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.782
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.881
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.892
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.892
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = -1.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.892
+INFO:tensorflow:Inference Time : 38.34614s
+I0823 09:21:40.434821 12436 evaluation.py:273] Inference Time : 38.34614s
+INFO:tensorflow:Finished evaluation at 2021-08-23-09:21:40
+I0823 09:21:40.435818 12436 evaluation.py:276] Finished evaluation at 2021-08-23-09:21:40
+INFO:tensorflow:Saving dict for global step 5000: AP = 0.7818096, AP50 = 0.88486093, AP75 = 0.88486093, APl = 0.7818288, APm = -1.0, APs = -1.0, ARl = 0.89248794, ARm = -1.0, ARmax1 = 0.88094205, ARmax10 = 0.89248794, ARmax100 = 0.89248794, ARs = -1.0, box_loss = 0.0005716174, cls_loss = 0.28881738, global_step = 5000, loss = 0.41308513
+I0823 09:21:40.435818 12436 estimator.py:2066] Saving dict for global step 5000: AP = 0.7818096, AP50 = 0.88486093, AP75 = 0.88486093, APl = 0.7818288, APm = -1.0, APs = -1.0, ARl = 0.89248794, ARm = -1.0, ARmax1 = 0.88094205, ARmax10 = 0.89248794, ARmax100 = 0.89248794, ARs = -1.0, box_loss = 0.0005716174, cls_loss = 0.28881738, global_step = 5000, loss = 0.41308513
+INFO:tensorflow:Saving 'checkpoint_path' summary for global step 5000: ./projects/Japanese_RoadSigns/models\model.ckpt-5000
+I0823 09:21:40.439808 12436 estimator.py:2127] Saving 'checkpoint_path' summary for global step 5000: ./projects/Japanese_RoadSigns/models\model.ckpt-5000
+I0823 09:21:40.455766 12436 utils.py:446] Ckpt 0.7818096280097961 is worse than 0.797885
