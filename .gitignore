@@ -20,6 +20,8 @@ parts/
 sdist/
 var/
 projects/Japanese_RoadSigns/models
+*.bak
+
 wheels/
 pip-wheel-metadata/
 share/python-wheels/
