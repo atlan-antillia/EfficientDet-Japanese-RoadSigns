@@ -26,9 +26,6 @@ import det_model_fn
 import hparams_config
 import utils
 
-#2021/09/02 arai
-from mAPEarlyStopping        import mAPEarlyStopping
-
 flags.DEFINE_string(
     'tpu',
     default=None,
@@ -359,7 +356,7 @@ def main(_):
         if p.exitcode != 0:
           return p.exitcode
       else:
-        tf.compat.v1.reset_default_graph()
+        tf.reset_default_graph()
         run_train_and_eval(e)
 
   else:
