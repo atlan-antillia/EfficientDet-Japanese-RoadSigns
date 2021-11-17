@@ -442,7 +442,11 @@ class TrainConfigParser(TrainConfig):
         val = self.INVALID
       return val
     except:
+<<<<<<< HEAD
       return None  #self.INVALID
+=======
+      return self.INVALID
+>>>>>>> b0899c8ca2ad6452deb495266a5cf445bc699a3f
 
   def early_stopping_metric(self):
     metric = "map"

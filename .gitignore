@@ -24,9 +24,9 @@ images/
 efficientdet-d0/
 projects/Japanese_RoadSigns/models
 projects/Japanese_RoadSigns/models_*
+*.html
 
-*.bak
-
+cocoapi/
 wheels/
 projects/Japanese_RoadSigns/models
 efficientdet-d0/

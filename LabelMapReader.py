@@ -25,7 +25,11 @@
             # The following line will cause an error if line contained the line 'name: "Maximum_Width_in_Meters",', 
             # because "id" in "Width".
             #if "id" in line:
+<<<<<<< HEAD
             if line.startswith("id:"):
+=======
+            if "id:" in line:
+>>>>>>> b0899c8ca2ad6452deb495266a5cf445bc699a3f
             
 
 """
