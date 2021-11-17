@@ -12,6 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ==============================================================================
+
+# Copyright 2020-2021 antillia.com Toshiyuki Arai
+
+# inference2.py
+# This is taken from inference.py
+
 r"""Inference related utilities."""
 import copy
 import functools
@@ -27,12 +33,17 @@ import dataloader
 import det_model_fn
 import hparams_config
 import utils
+import vis_utils2
+#from vis_utils2 import *
+
 from tf2 import efficientdet_keras
 from tf2 import label_util
 from tf2 import postprocess
-from visualize import vis_utils
+#from visualize import vis_utils
+
 from tensorflow.python.client import timeline  # pylint: disable=g-direct-tensorflow-import
 
+import pprint
 
 def image_preprocess(image, image_size, mean_rgb, stddev_rgb):
   """Preprocess image for inference.
@@ -133,7 +144,11 @@ def build_inputs(
     ValueError if image_path_pattern doesn't match any file.
   """
   raw_images, images, scales = [], [], []
+  filenames = []
   for f in tf.io.gfile.glob(image_path_pattern):
+    fname = os.path.basename(f)
+    filenames.append(fname)
+    #print("=============== filename_only {}".format(fname))
     image = Image.open(f)
     raw_images.append(image)
     image, scale = image_preprocess(image, image_size, mean_rgb, stddev_rgb)
@@ -142,7 +157,9 @@ def build_inputs(
   if not images:
     raise ValueError(
         'Cannot find any images for pattern {}'.format(image_path_pattern))
-  return raw_images, tf.stack(images), tf.stack(scales)
+  #return raw_images, tf.stack(images), tf.stack(scales)
+  # Modified to return filename.
+  return raw_images, tf.stack(images), tf.stack(scales), filenames
 
 
 def build_model(model_name: Text, inputs: tf.Tensor, **kwargs):
@@ -202,6 +219,7 @@ def restore_ckpt(sess, ckpt_path, ema_decay=0.9998, export_ckpt=None):
     export_ckpt: whether to export the restored model.
   """
   sess.run(tf.global_variables_initializer())
+  #print("=== ckt_path {}".format(ckpt_path))
   if tf.io.gfile.isdir(ckpt_path):
     ckpt_path = tf.train.latest_checkpoint(ckpt_path)
   if ema_decay > 0:
@@ -271,8 +289,11 @@ def det_post_process(params: Dict[Any, Any], cls_outputs: Dict[int, tf.Tensor],
   ]
   return tf.stack(detections, axis=-1, name='detections')
 
-
-def visualize_image(image,
+#2020/07/31
+#2020/08/15 atlan 
+#def visualize_image_with_filters(filters, # list something like [person, car]
+def visualize_image(filters, ### 2021/09/22
+                    image,
                     boxes,
                     classes,
                     scores,
@@ -281,6 +302,7 @@ def visualize_image(image,
                     max_boxes_to_draw=1000,
                     line_thickness=2,
                     **kwargs):
+
   """Visualizes a given image.
 
   Args:
@@ -298,10 +320,13 @@ def visualize_image(image,
   Returns:
     output_image: an output image with annotated boxes and classes.
   """
+  #print("--- label_map {}".format(label_map))
   label_map = label_util.get_label_map(label_map or 'coco')
   category_index = {k: {'id': k, 'name': label_map[k]} for k in label_map}
   img = np.array(image)
-  vis_utils.visualize_boxes_and_labels_on_image_array(
+
+  (image, detected_objects, objects_stats) = vis_utils2.visualize_boxes_and_labels_on_image_array_with_filters(
+      filters,
       img,
       boxes,
       classes,
@@ -311,10 +336,15 @@ def visualize_image(image,
       max_boxes_to_draw=max_boxes_to_draw,
       line_thickness=line_thickness,
       **kwargs)
-  return img
+  #return img
+  return (image, detected_objects, objects_stats)
 
 
-def visualize_image_prediction(image,
+
+#2020/07/31 atlan
+#def visualize_image_prediction_with_filters(filters, #list of classes
+def visualize_image_prediction(filters, ###
+                               image,
                                prediction,
                                label_map=None,
                                **kwargs):
@@ -334,8 +364,9 @@ def visualize_image_prediction(image,
   boxes = prediction[:, 1:5]
   classes = prediction[:, 6].astype(int)
   scores = prediction[:, 5]
+  # return img
+  return visualize_image(filters, image, boxes, classes, scores, label_map, **kwargs)
 
-  return visualize_image(image, boxes, classes, scores, label_map, **kwargs)
 
 
 class ServingDriver(object):
@@ -474,13 +505,18 @@ class ServingDriver(object):
     }
     return self.signitures
 
-  def visualize(self, image, prediction, **kwargs):
+  def visualize(self, filters, image, prediction, **kwargs):
     """Visualize prediction on image."""
-    return visualize_image_prediction(
+    
+    img = visualize_image_prediction(
+
+        filters,
         image,
         prediction,
         label_map=self.label_map,
         **kwargs)
+    
+    return img
 
   def serve_files(self, image_files: List[Text]):
     """Serve a list of input image files.
@@ -644,7 +680,7 @@ class ServingDriver(object):
           session_config=sess_config)
       logging.info('TensorRT model is saved at %s', trt_path)
 
-
+#2020/07/31 atlan
 class InferenceDriver(object):
   """A driver for doing batch inference.
 
@@ -674,7 +710,10 @@ class InferenceDriver(object):
     self.params.update(dict(is_training_bn=False))
     self.label_map = self.params.get('label_map', None)
 
-  def inference(self, image_path_pattern: Text, output_dir: Text, **kwargs):
+  #def inference(self, image_path_pattern: Text, output_dir: Text, **kwargs):
+  #2020/07/31 atlan
+  # filters: a list of classes to be selected, which can be used in a post-processing stage after a detection process.
+  def inference(self, filters, image_path_pattern: Text, output_dir: Text, **kwargs):
     """Read and preprocess input images.
 
     Args:
@@ -690,7 +729,8 @@ class InferenceDriver(object):
     params = copy.deepcopy(self.params)
     with tf.Session() as sess:
       # Buid inputs and preprocessing.
-      raw_images, images, scales = build_inputs(image_path_pattern,
+      # 2021/09/20 Modified to return filenames
+      raw_images, images, scales, filenames = build_inputs(image_path_pattern,
                                                 params['image_size'],
                                                 params['mean_rgb'],
                                                 params['stddev_rgb'])
@@ -710,11 +750,27 @@ class InferenceDriver(object):
       predictions = sess.run(detections_batch)
       # Visualize results.
       for i, prediction in enumerate(predictions):
-        img = visualize_image_prediction(
+        #2020/08/25 atlan objects_stats
+
+        #img = visualize_image_prediction(
+        #    raw_images[i],
+        #    prediction,
+        #    label_map=self.label_map,
+        #    **kwargs)
+        #(img, detected_objects, objects_stats) = visualize_image_prediction_with_filters(
+        (img, detected_objects, objects_stats) = visualize_image_prediction(
+            filters,
             raw_images[i],
             prediction,
-            label_map=self.label_map,
+            label_map=self.label_map, #label_id_mapping,
             **kwargs)
+            
+        if filters is None:
+           filters = ""
+        else:
+          str_filters= str(filters)
+          str_filters = str_filters.replace(',', '_')
+        
         output_image_path = os.path.join(output_dir, str(i) + '.jpg')
         Image.fromarray(img).save(output_image_path)
         print('writing file to %s' % output_image_path)

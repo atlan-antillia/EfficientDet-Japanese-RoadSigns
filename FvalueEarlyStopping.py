@@ -1,4 +1,3 @@
-# Copyright 2020-2021 antillia.com Toshiyuki Arai
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,41 +11,37 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#2021/02/10 
-#mAParlyStopping.py
+# FvaluEarlyStopping.py
+# 2021/10/13 
 
 import os
 import sys
 from EarlyStopping import EarlyStopping 
 
-class mAPEarlyStopping(EarlyStopping):
-  def __init__(self, patience=5, verbose=0):
+class FvalueEarlyStopping(EarlyStopping):
+  def __init__(self, patience=10, verbose=0):
       super().__init__(patience, verbose)
-      self._mAP = 0.0
-      
-  #2021/10/13
-  #def validate(self, e, mAP):
-  def validate(self, e, mAP, mAR):
-       
-      if self._mAP > mAP:
-          #If mAP is not increasing
+      self._f = 0.0
+
+  def validate(self, e, ap, ar):
+      f   = 2.0 * (float(ap)* float(ar))/(float(ap) + float(ar))
+      if self._f > f:
+          #If f is not increasing 
           self._step += 1
-          print("=== mAPEarlyStopping epoch:{} step:{} prev mAP:{} > new mAP: {}".format(e, self._step,   
-             round(self._mAP,4),
-             round( mAP, 4) ))
-          
+          print("=== FvalueEarlyStopping epoch:{}   -- patience:{}  step:{} prev f:{} > new f: {}".format(e, 
+                    self.patience, self._step, self._f, f))
+           
           if self._step > self.patience:
               if self.verbose:
-                  print('=== mAPEarlyStopping is validated')
+                  print('=== FvalueEarlyStopping is validated')
               return True
       else:
-          # self._mAP <= mAP
-          print("=== mAPEarlyStopping epoch:{} step:{} prev mAP:{} <= new mAP:{}".format(e, self._step, 
-           round(self._mAP, 4),
-           round(mAP,4) ))
-
+          # self._f <= f
+          print("=== FvalueEarlyStopping epoch:{}   -- patience:{}  step:{} prev f:{} <= new f:{}".format(e,
+                    self.patience, self._step, self._f, f))
+                    
           self._step = 0
-          self._mAP = mAP
+          self._f = f
 
       return False
 

@@ -26,8 +26,7 @@ import traceback
 import numpy as np
 import tarfile
 import shutil
-#
-import tensorflow as tf
+
 
 def download_image_file(img_file):
 
