@@ -21,9 +21,8 @@ We create and use "c:\google" folder for our project.<br>
 >git clone https://github.com/cocodataset/cocoapi
 >cd cocoapi/PythonAPI
 
-# Probably you have to modify extra_compiler_args in setup.py in the following way:
-# setup.py
-        #extra_compile_args=['-Wno-cpp', '-Wno-unused-function', '-std=c99'],
+You have to modify extra_compiler_args in setup.py in the following way:
+setup.py
         extra_compile_args=[],
 >python setup.py build_ext install
 </pre>
@@ -113,7 +112,19 @@ See: https://github.com/google/automl/tree/master/efficientdet<br>
 We use the japanese_roadsigns_train.bat file.
 
 <pre>
-python main.py --mode=train_and_eval --train_file_pattern=./projects/Japanese_RoadSigns/train/japanese_roadsigns.tfrecord  --val_file_pattern=./projects/Japanese_RoadSigns/valid/japanese_roadsigns.tfrecord --model_name=efficientdet-d0  --model_dir=./projects/Japanese_RoadSigns/models --ckpt=efficientdet-d0  --train_batch_size=4 --eval_batch_size=4 --eval_samples=200  --num_examples_per_epoch=200 --num_epochs=100 
+>python main.py ^
+  --mode=train_and_eval ^
+  --train_file_pattern=./projects/Japanese_RoadSigns/train/japanese_roadsigns.tfrecord  ^
+  --val_file_pattern=./projects/Japanese_RoadSigns/valid/japanese_roadsigns.tfrecord ^
+  --model_name=efficientdet-d0 ^
+  --model_dir=./projects/Japanese_RoadSigns/models ^
+  --ckpt=efficientdet-d0  ^
+  --train_batch_size=4 ^
+  --eval_batch_size=4 ^
+  --eval_samples=200  ^
+  --num_examples_per_epoch=200 ^
+  --num_epochs=100   
+
 </pre>
 
 <table style="border: 1px solid #000;">
@@ -174,7 +185,13 @@ python main.py --mode=train_and_eval --train_file_pattern=./projects/Japanese_Ro
 </h3>
  We use japanese_roadsigns_create_saved_model.bat file.
 <pre>
-python model_inspect.py --runmode=saved_model --model_name=efficientdet-d0 --ckpt_path=./projects/Japanese_RoadSigns/models  --hparams="image_size=512x512" --saved_model_dir=./projects/Japanese_RoadSigns/saved_model
+>python model_inspect.py ^
+  --runmode=saved_model ^
+  --model_name=efficientdet-d0 ^
+  --ckpt_path=./projects/Japanese_RoadSigns/models  ^
+  --hparams="image_size=512x512" ^
+  --saved_model_dir=./projects/Japanese_RoadSigns/saved_model
+
 </pre>
 
 <table style="border: 1px solid #000;">
@@ -206,8 +223,15 @@ python model_inspect.py --runmode=saved_model --model_name=efficientdet-d0 --ckp
 </h3>
  We use japanese_roadsigns_detect.bat file.
 <pre>
-python model_inspect.py --runmode=saved_model_infer --model_name=efficientdet-d0 --saved_model_dir=./projects/Japanese_RoadSigns/saved_model --min_score_thresh=0.3 --hparams=./projects/Japanese_RoadSigns/configs/default.yaml --input_image=./projects/Japanese_RoadSigns/test/*.jpg --output_image_dir=./projects/Japanese_RoadSigns/outputs
-
+>mkdir .\projects\Japanese_RoadSigns\outputs
+python model_inspect.py ^
+  --runmode=saved_model_infer ^
+  --model_name=efficientdet-d0 ^
+  --saved_model_dir=./projects/Japanese_RoadSigns/saved_model ^
+  --min_score_thresh=0.3 ^
+  --hparams=./projects/Japanese_RoadSigns/configs/detect.yaml ^
+  --input_image=./projects/Japanese_RoadSigns/test/*.jpg ^
+  --output_image_dir=./projects/Japanese_RoadSigns/outputs
 </pre>
 
 <table style="border: 1px solid #000;">
