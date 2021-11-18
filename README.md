@@ -21,7 +21,7 @@ We create and use "c:\google" folder for our project.<br>
 >git clone https://github.com/cocodataset/cocoapi
 >cd cocoapi/PythonAPI
 </pre>
-You have to modify extra_compiler_args in setup.py in the following way:
+You have to modify extra_compiler_args in setup.py in the following way:<br>
    extra_compile_args=[],
 <pre>
 >python setup.py build_ext install
