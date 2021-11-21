@@ -2,7 +2,7 @@
 Training and detection Japanese RoadSigns by EfficientDet
 
 <h2>
-EfficientDet Japanese RoadSigns
+EfficientDet Japanese RoadSigns (Updated: 2021/11/21)
 </h2>
 
 This is a simple python example to train and detect Japanese RoadSigns by EfficientDet of Google Brain AutoML.
@@ -110,20 +110,26 @@ See: https://github.com/google/automl/tree/master/efficientdet<br>
 5. Training Japanese_RoadSigns by using pretrained-model
 </h3>
 We use the japanese_roadsigns_train.bat file.
-
+Modified to use main2.py to write COCO metrics to the csv files(2021/11/21).
 <pre>
->python main.py ^
+>python main2.py ^
   --mode=train_and_eval ^
   --train_file_pattern=./projects/Japanese_RoadSigns/train/japanese_roadsigns.tfrecord  ^
   --val_file_pattern=./projects/Japanese_RoadSigns/valid/japanese_roadsigns.tfrecord ^
   --model_name=efficientdet-d0 ^
+  --hparams="label_map=./projects/Japanese_RoadSigns/configs/label_map.yaml" ^
   --model_dir=./projects/Japanese_RoadSigns/models ^
+  --label_map_pbtxt=./projects/Japanese_RoadSigns/train/label_map.pbtxt ^
+  --eval_dir=./projects/Japanese_RoadSigns/eval ^
   --ckpt=efficientdet-d0  ^
   --train_batch_size=4 ^
+  --early_stopping=map ^
+  --patience=10 ^
   --eval_batch_size=4 ^
   --eval_samples=200  ^
   --num_examples_per_epoch=200 ^
   --num_epochs=100   
+
 
 </pre>
 
@@ -144,10 +150,21 @@ We use the japanese_roadsigns_train.bat file.
 <td>
 --model_name</td><td>efficientdet-d0</td>
 </tr>
+<tr><td>
+--hparams</td><td>"label_map=./projects/Japanese_RoadSigns/configs/label_map.yaml"
+</td></tr>
 <tr>
 <td>
 --model_dir</td><td>./projects/Japanese_RoadSigns/models</td>
 </tr>
+<tr><td>
+--label_map_pbtxt</td><td>./projects/Japanese_RoadSigns/train/label_map.pbtxt
+</td></tr>
+
+<tr><td>
+--eval_dir</td><td>./projects/Japanese_RoadSigns/eval
+</td></tr>
+
 <tr>
 <td>
 --ckpt</td><td>efficientdet-d0</td>
@@ -175,6 +192,19 @@ We use the japanese_roadsigns_train.bat file.
 </table>
 <br>
 <br>
+
+<b>COCO meticss f and map at epoch41</b><br>
+<img src="./asset/coco_metrics_epoch41.png" width="1024" height="auto">
+<br>
+
+<b>Train losses at epoch41</b><br>
+<img src="./asset/train_losses_epoch41.png" width="1024" height="auto">
+<br>
+
+<b>COCO ap per class at epoch40</b><br>
+<img src="./asset/coco_ap_per_class_epoch40.png" width="1024" height="auto">
+<br>
+
 
 <b>mAP at epoch 100</b><br>
 
