@@ -250,16 +250,19 @@ class TrainConfigParser(TrainConfig):
   def hparams(self):
     import yaml
     try:
-      val = self.config[self.TRAINING][self.HPARAMS]
-      return val
+      rc = self.config[self.TRAINING][self.HPARAMS]
+      print("--- hparams {}".format(rc))
     except:
-      traceback.print_exc()
+      pass
+      #traceback.print_exc()
     return None
 
   # 'Number of examples in one epoch'
   def examples_per_epoch(self):
     try:
-      return int(self.config[self.TRAINING][self.EXAMPLES_PER_EPOCH])
+      rc = int(self.config[self.TRAINING][self.EXAMPLES_PER_EPOCH])
+      print("--- examples_per_epoch {}".format(rc))
+      return rc
     except:
       return 1000
  
@@ -268,7 +271,18 @@ class TrainConfigParser(TrainConfig):
   """
   def training_cores(self):
     try:
-      return int(self.config[self.TRAINING][self.CORES])
+      rc = int(self.config[self.TRAINING][self.CORES])
+      print("--- training_cores".format(training_cores))
+      return rc
+    except:
+      pass
+    return self.INVALID
+
+  def num_examples_per_epoch(self):
+    try:
+      rc = int(self.config[self.TRAINING][self.NUM_EXAMPLES_PER_EPOCH])
+      print("--- num_examples_per_epoch{}".format(rc))
+      return rc
     except:
       pass
     return self.INVALID
@@ -279,8 +293,8 @@ class TrainConfigParser(TrainConfig):
   def use_spatial_partition(self):
     rc = False
     try:
-      val = self.config[self.TRAINING][self.USE_SPATIAL_PARTITION]
-      rc = self.parse_if_possible(val)
+      rc = eval(self.config[self.TRAINING][self.USE_SPATIAL_PARTITION])
+      print("--- use_spatial_partition {}".format(rc))
     except:
       pass
     return rc
@@ -288,22 +302,26 @@ class TrainConfigParser(TrainConfig):
   def use_fake_data(self):
     rc = False
     try:
-      val = self.config[self.TRAINING][self.USE_FAKE_DATA]
-      rc = self.parse_if_possible(val)
+      rc = eval(self.config[self.TRAINING][self.USE_FAKE_DATA])
+      print("--- use_fake_data {}".format(rc))
+      return rc
     except:
       pass
     return rc
 
   def num_cores_per_replica(self):
     try:
-      return int(self.config[self.TRAINING][self.CORES_PER_REPLICA])
+      rc = int(self.config[self.TRAINING][self.CORES_PER_REPLICA])
+      print("--- num_cores_per_replica {}".format(rc))
+      return rc
     except:
       return self.INVALID
       
      
   def input_partition_dims(self):
     try:
-      return list(self.config[self.TRAINING][self.INPUT_PARTION_DIMS])
+      rc = eval(self.config[self.TRAINING][self.INPUT_PARTION_DIMS])
+      print("--- input_partition_dims {}".format(rc))
     except:
       return [1, 2, 1, 1]
   
@@ -313,8 +331,9 @@ class TrainConfigParser(TrainConfig):
   """
   def tf_random_seed(self):
     try:
-      val = self.config[self.TRAINING][self.TF_RANDOM_SEED]
-      return self.symbolize_if_possible(val)
+      rc = eval(self.config[self.TRAINING][self.TF_RANDOM_SEED])
+      print("--- tf_random_seed {}".format(rc))
+      return rc
     except:
       return False
 
@@ -420,6 +439,17 @@ class TrainConfigParser(TrainConfig):
     except:
       return None
 
+  def disable_per_class_ap(self):
+    try:
+      return eval(self.config[self.VALIDATION][self.DISABLE_PER_CLASS_AP])
+    except:
+      return False
+      
+  def eval_dir(self):
+    try:
+      return self.config[self.VALIDATION][self.EVAL_DIR]
+    except:
+      return "./"
 
   def evaluation_results_file(self):
     try:
@@ -442,11 +472,7 @@ class TrainConfigParser(TrainConfig):
         val = self.INVALID
       return val
     except:
-<<<<<<< HEAD
-      return None  #self.INVALID
-=======
       return self.INVALID
->>>>>>> b0899c8ca2ad6452deb495266a5cf445bc699a3f
 
   def early_stopping_metric(self):
     metric = "map"
@@ -515,14 +541,13 @@ class TrainConfigParser(TrainConfig):
 
     print("train_file_pattern  {}".format(self.train_file_pattern() ))
 
-    print("examples_per_epoch     {}".format(self.examples_per_epoch() ))
+    print("num_examples_per_epoch     {}".format(self.num_examples_per_epoch() ))
 
     print("training_cores         {}".format(self.training_cores() ))
 
     print("use_spatial_partition  {}".format(self.use_spatial_partition() ))
 
     print("tf_random_seed         {}".format(self.tf_random_seed() ))
-
 
     ####validation
     print("val_file_pattern       {}".format(self.val_file_pattern() ))

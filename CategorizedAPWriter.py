@@ -55,6 +55,7 @@ class CategorizedAPWriter:
           for category in self.categories:            
             key  = "AP_/" + category
             ap   = float(results[key])
+            ap   = round(ap, 5)  #2021/11/20
             line = line +  str(ap) + SEP
              
           print("=== Categorized_AP {}".format(line))

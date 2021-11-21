@@ -20,7 +20,7 @@ import os
 import sys
 import traceback
 
-class EvaluationResultsWriter:
+class COCOMetricsWriter:
 
   def __init__(self, evaluation_results_file):
     print("=== COCOMetricsWriter __init__")

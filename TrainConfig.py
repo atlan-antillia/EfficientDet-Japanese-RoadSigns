@@ -67,13 +67,14 @@ class TrainConfig:
   TF_RANDOM_SEED      = "tf_random_seed"
   USE_FAKE_DATA       = "use_fake_data"
   TRAINING_LOSSES_FILE = "training_losses_file"
- 
+
+  NUM_EXAMPLES_PER_EPOCH = "num_examples_per_epoch" 
 
   VALIDATION          = "validation"
   #FILE_PATTERN       = "file_pattern"
   #BATCH_SIZE         = "batch_size"
   EVAL_SAMPLES        = "eval_samples"
-
+  EVAL_DIR            = "eval_dir"
   ITERATIONS_PER_LOOP = "iterations_per_loop"
   VAL_JSON_FILE       = "val_json_file"
   EVAL_AFTER_TRAIN    = "eval_after_train"
