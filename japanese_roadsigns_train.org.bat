@@ -1,0 +1,17 @@
+python main2.py ^
+  --mode=train_and_eval ^
+  --train_file_pattern=./projects/Japanese_RoadSigns/train/japanese_roadsigns.tfrecord  ^
+  --val_file_pattern=./projects/Japanese_RoadSigns/valid/japanese_roadsigns.tfrecord ^
+  --model_name=efficientdet-d0 ^
+  --hparams="label_map=./projects/Japanese_RoadSigns/configs/label_map.yaml" ^
+  --model_dir=./projects/Japanese_RoadSigns/models ^
+  --label_map_pbtxt=./projects/Japanese_RoadSigns/train/label_map.pbtxt ^
+  --eval_dir=./projects/Japanese_RoadSigns/eval ^
+  --ckpt=efficientdet-d0  ^
+  --train_batch_size=4 ^
+  --early_stopping=map ^
+  --patience=10 ^
+  --eval_batch_size=4 ^
+  --eval_samples=200  ^
+  --num_examples_per_epoch=200 ^
+  --num_epochs=100   
