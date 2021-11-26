@@ -17,7 +17,7 @@ We create and use "c:\google" folder for our project.<br>
 <pre>
 >mkdir c:\google
 >cd    c:\google
->pip install - requirements.tx
+>pip install -r requirements.txt
 >git clone https://github.com/cocodataset/cocoapi
 >cd cocoapi/PythonAPI
 </pre>
