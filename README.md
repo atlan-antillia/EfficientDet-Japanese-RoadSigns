@@ -2,18 +2,23 @@
 Training and detection Japanese RoadSigns by EfficientDet
 
 <h2>
-EfficientDet Japanese RoadSigns (Updated: 2021/11/25)
+EfficientDet Japanese RoadSigns (Updated: 2021/11/28)
 </h2>
 
-This is a simple python example to train and detect Japanese RoadSigns by EfficientDet of Google Brain AutoML.
-
+This is a simple python example to train and detect Japanese RoadSigns based on 
+<a href="https://github.com/google/automl/tree/master/efficientdet">Google Brain AutoML efficientdet</a>.
+<br>
+Updated <a href="./EfficientDetFinetuningModel.py">EfficientDetFinetuningModel</a> and related 
+<a href="./TrainConfigParser.py">TrainConfigParser</a> classes.<br>
 
 <h3>
 1. Installing tensorflow on Windows10
 </h3>
-We use Python 3.8 to run tensoflow 2.4.0 on Windows10.<br>
-At first, you have to install Microsoft Visual Studio 2019 Community Edition for Windows10.<br>
-We create and use "c:\google" folder for our project.<br>
+We use Python 3.8.10 to run tensoflow 2.4.0 on Windows10.<br>
+At first, please install <a href="https://visualstudio.microsoft.com/ja/vs/community/">Microsoft Visual Studio Community</a>, which can be used to compile source code of 
+<a href="https://github.com/cocodataset/cocoapi">cocoapi</a> for PythonAPI.<br>
+Subsequently, please create a working folder "c:\google" folder for your repository, and install the python packages.<br>
+
 <pre>
 >mkdir c:\google
 >cd    c:\google
@@ -77,7 +82,8 @@ Run the following command to inspect train.tfreord.<br>
 <pre>
 >python TFRecordInspector.py ./projects/Japanese_RoadSigns/train/japanese_roadsigns.tfrecord ./projects/Japanese_RoadSigns/train/label_map.pbtxt ./inspector/train
 </pre>
-<br>
+<br><br>
+This will generate annotated images with bboxes and labels from the tfrecord, and cout the number of annotated objects in it.<br>
 <br>
 <b>TFRecordInspecotr: annotated images in train.tfrecord</b><br>
 <img src="./asset/tfrecord_inspector_train.png">
@@ -85,7 +91,9 @@ Run the following command to inspect train.tfreord.<br>
 <br>
 <b>TFRecordInspecotr: objects_count train.tfrecord</b><br>
 <img src="./asset/tfrecord_inspector_train_objects_count.png">
-
+<br>
+This bar graph shows that the number of the objects are uniformly distributed.
+<br>
 <br>
 <br>
 <h3>4. Downloading the pretrained-model efficientdet-d0</h3>
@@ -257,7 +265,14 @@ Furthermore, we have increased the values of <b>eval_samples</b> and <b>num_exam
 71: "Traffic_Circle"
 </pre>
 <br>
-
+Alternatively, you can run <a href="./EfficientDetFinetuningModel.py">EfficientDetFinetuningModel.py</a> with a train.config file <br>
+instead of the train.bat above.<br>
+<br>
+<pre>
+> python EfficientDetFinetuningModel.py ./projects/Japanese-RoadSigns/configs/train.config
+</pre
+</br>
+<br>
 <b>mAP at epoch 36</b><br>
 
 <img src="./asset/mAP_epoch36_efficientdetfiinetuiningmodel_with_eval_sample400.png" width="1024" height="auto">

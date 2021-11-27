@@ -239,12 +239,6 @@ class TrainConfigParser(TrainConfig):
     except:
       return None
 
-  def categorized_ap_file(self):
-    try:
-      return self.config[self.TRAINING][self.CATEGORIZED_AP_FILE]
-    except:
-      return None
-
   # 2021/11/08
   # val is fool.yaml or comma separated k=v pairs of hyperparameters 
   def hparams(self):
@@ -344,6 +338,13 @@ class TrainConfigParser(TrainConfig):
       pass
     return None
 
+  def num_examples_per_epoch(self):
+    try:
+      return int(self.config[self.TRAINING][self.NUM_EXAMPLES_PER_EPOCH])
+    except:
+      return 100
+    
+
   ####validation  
   """
   'Glob for evaluation tfrecords (e.g., COCO val2017 set)'
@@ -359,11 +360,10 @@ class TrainConfigParser(TrainConfig):
   """
 
   def eval_batch_size(self):
-
     try:
       return int(self.config[self.VALIDATION][self.BATCH_SIZE])
     except:
-      return 1
+      return 64
     
   """
   'Number of samples for eval.'
@@ -373,12 +373,6 @@ class TrainConfigParser(TrainConfig):
       return int(self.config[self.VALIDATION][self.EVAL_SAMPLES])
     except:
       return 100
-
-  def eval_batch_size(self):
-    return 1
-
-  def num_examples_per_epoch(self):
-    return 100
 
           
   """
@@ -451,16 +445,16 @@ class TrainConfigParser(TrainConfig):
     except:
       return "./"
 
-  def evaluation_results_file(self):
+  def coco_metrics_file(self):
     try:
-      return self.config[self.VALIDATION][self.EVALUATION_RESULTS_FILE]
+      return self.config[self.VALIDATION][self.COCO_METRICS_FILE]
     except:
       return None
 
-  # 2021/11/07 Added the following method.
-  def categorized_ap_file(self):
+  # 2021/11/22 .
+  def coco_ap_per_class_file(self):
     try:
-      return self.config[self.VALIDATION][self.CATEGORIZED_AP_FILE]
+      return self.config[self.VALIDATION][self.COCO_AP_PER_CLASS_FILE]
     except:
       return None
 
@@ -566,7 +560,7 @@ class TrainConfigParser(TrainConfig):
 
     print("eval_timeout           {}".format(self.eval_timeout() ))
 
-    print("evaluation_results_file {}".format(self.evaluation_results_file() ))
+    print("coco_metrics_file      {}".format(self.coco_metrics_file() ))
 
     print("early_stopping_metric   {}".format(self.early_stopping_metric() ))
 

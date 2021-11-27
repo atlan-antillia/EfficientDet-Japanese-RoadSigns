@@ -81,15 +81,13 @@ class TrainConfig:
   TESTDEV_DIR         = "testdev_dir"
   MIN_EVAL_INTERVAL   = "min_eval_interalval"
   EVAL_TIMEOUT        = "eval_timeout"
-  EVALUATION_RESULTS_FILE   = "evaluation_results_file"
-  # 2021/11/07 Added the followin line.
-  CATEGORIZED_AP_FILE   = "categorized_ap_file"
+  COCO_METRICS_FILE   = "coco_metrics_file"
+  COCO_AP_PER_CLASS_FILE = "coco_ap_per_class_file"
+
   
   EPOCH_CHANGE_NOTIFIER = "epoch_change_notifier"
   
   INVALID             = -1
-
-
 
   EARLY_STOPPING      = "early_stopping"
   METRIC              = "metric"

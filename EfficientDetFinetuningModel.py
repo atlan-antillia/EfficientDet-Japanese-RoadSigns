@@ -41,12 +41,12 @@ from TrainConfigParser       import TrainConfigParser
 from mAPEarlyStopping        import mAPEarlyStopping
 from FvalueEarlyStopping     import FvalueEarlyStopping
 
-from EvaluationResultsWriter import EvaluationResultsWriter
+from COCOMetricsWriter       import COCOMetricsWriter
 from EpochChangeNotifier     import EpochChangeNotifier
 from TrainingLossesWriter    import TrainingLossesWriter
 from CategorizedAPWriter     import CategorizedAPWriter
 
-# 2021/11/19 Updated
+# 2021/11/22 Updated
 # Based on the latest main.py
 
 class EfficientDetFinetuningModel(object):
@@ -60,36 +60,37 @@ class EfficientDetFinetuningModel(object):
     self.model_dir      = self.parser.model_dir()
     if not os.path.exists(self.model_dir):
       os.makedirs(self.model_dir)
-   
-    training_losses_file           = self.parser.training_losses_file()
-    print("=== training_losses_file{}".format(training_losses_file))
 
-    self.label_map_pbtxt           = self.parser.label_map_pbtxt()
-    labelMapReader                 = LabelMapReader()
-    self.label_map, classes        = labelMapReader.read( self.label_map_pbtxt)
-    print("=== label_map {}".format(self.label_map))
-
-    self.training_losses_writer    = TrainingLossesWriter(training_losses_file)
-
-    categorized_ap_file            = self.parser.categorized_ap_file()    
-    print("=== categorized_ap_file  {}".format(categorized_ap_file ))
-
-    self.categorized_ap_writer     = CategorizedAPWriter(self.label_map_pbtxt, categorized_ap_file)
-    
-    evaluation_results_file        = self.parser.evaluation_results_file()
-    print("=== evaluation_results_file {}".format(evaluation_results_file))
-    
-    self.evaluation_results_writer = EvaluationResultsWriter(evaluation_results_file)
-    self.early_stopping_metric     = self.parser.early_stopping_metric()
-    patience                       = self.parser.early_stopping_patience()
-    self.early_stopping            = None
-  
     eval_dir                    = self.parser.eval_dir()
     print("=== eval_dir {}",format(eval_dir))
     if os.path.exists(eval_dir) == False:
       os.makedirs(eval_dir)
 
-    if patience != None or patience > 0:
+    training_losses_file           = self.parser.training_losses_file()
+    print("=== training_losses_file{}".format(training_losses_file))
+
+    self.label_map_pbtxt           = self.parser.label_map_pbtxt()
+    labelMapReader                 = LabelMapReader()
+    self.label_map, classes        = labelMapReader.read(self.label_map_pbtxt)
+    print("=== label_map {}".format(self.label_map))
+
+    self.training_losses_writer    = TrainingLossesWriter(training_losses_file)
+
+    coco_ap_per_class_file         = self.parser.coco_ap_per_class_file()    
+    print("=== coco_ap_per_class_file  {}".format(coco_ap_per_class_file ))
+
+    self.categorized_ap_writer     = CategorizedAPWriter(self.label_map_pbtxt, coco_ap_per_class_file)
+    
+    coco_metrics_file              = self.parser.coco_metrics_file()
+    print("=== coco_metrics_file {}".format(coco_metrics_file))
+    
+    self.coco_metrics_writer       = COCOMetricsWriter(coco_metrics_file)
+    self.early_stopping_metric     = self.parser.early_stopping_metric()
+    patience                       = self.parser.early_stopping_patience()
+    self.early_stopping            = None
+  
+
+    if  patience > 0:
       # 2021/10/13
       if self.early_stopping_metric   == "map":
         self.early_stopping = mAPEarlyStopping(patience=patience, verbose=1) 
@@ -110,9 +111,9 @@ class EfficientDetFinetuningModel(object):
 
 
   def train(self):
-  
     # Check data path
-    if self.parser.mode in ('train', 'train_and_eval'):
+    # 2021/11/27 mode->mode()
+    if self.parser.mode() in ('train', 'train_and_eval'):
       if self.parser.train_file_pattern() is None:
         raise RuntimeError('Must specify --train_file_pattern for train.')
     if self.parser.mode() in ('eval', 'train_and_eval'):
@@ -347,7 +348,7 @@ class EfficientDetFinetuningModel(object):
 
         #self.epoch_change_notifier.epoch_end(e, loss, map)
         
-        self.evaluation_results_writer.write(e, eval_results)
+        self.coco_metrics_writer.write(e, eval_results)
         # 2021/11/10
         self.categorized_ap_writer.write(e, eval_results)
 
@@ -356,15 +357,13 @@ class EfficientDetFinetuningModel(object):
         ckpt = tf.train.latest_checkpoint(self.parser.model_dir() )
         utils.archive_ckpt(eval_results, eval_results['AP'], ckpt)
 
-        breaking_loop_by_earlystopping = False
+        earlystopping = False
         if self.early_stopping != None:
-          ap           = eval_results['AP']
-          ar_1         = eval_results['ARmax1']
+          ap = eval_results['AP']
+          ar = eval_results['ARmax1']
+          earlystopping = self.early_stopping.validate(e, ap, ar)
           
-          breaking_loop_by_earlystopping = self.early_stopping.validate(e, ap, ar_1)
-          
-        return breaking_loop_by_earlystopping
-
+        return earlystopping
 
 
       epochs_per_cycle = 1  # higher number has less graph construction overhead.
@@ -377,14 +376,13 @@ class EfficientDetFinetuningModel(object):
             return p.exitcode
         else:
           tf.reset_default_graph()
-          breaking_loop = run_train_and_eval(e)
-          if breaking_loop:
+          earlystopping = run_train_and_eval(e)
+          if earlystopping:
+            print("=== Early_stopping validated at epoch {}".format(e))
             break
             
     else:
       logging.info('Invalid mode: %s', self.parser.mode())
-
-
 
 def main(_):
   train_config = ""
