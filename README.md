@@ -92,7 +92,7 @@ This will generate annotated images with bboxes and labels from the tfrecord, an
 <b>TFRecordInspecotr: objects_count train.tfrecord</b><br>
 <img src="./asset/tfrecord_inspector_train_objects_count.png">
 <br>
-This bar graph shows that the number of the objects are uniformly distributed.
+This bar graph shows that the number of the objects are almost uniformly distributed.
 <br>
 <br>
 <br>
