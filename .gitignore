@@ -24,6 +24,8 @@ images/
 efficientdet-d0/
 projects/Japanese_RoadSigns/models
 projects/Japanese_RoadSigns/models_*
+inspector/
+
 *.html
 
 cocoapi/
