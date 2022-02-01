@@ -16,6 +16,7 @@
 """The main training script."""
 import multiprocessing
 import os
+os.environ["TF_FORCE_GPU_ALLOW_GROWTH"] = "true"
 import sys
 from absl import app
 #from absl import FLAGS

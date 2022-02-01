@@ -67,7 +67,10 @@ EfficientDet-Japanese-RoadSigns
  However, the all images in the YOLO repository was resized to become 512x512 to create those japanese_roadsigns.tfrecords.<br>
 <br>
  See also: <a href="https://github.com/atlan-antillia/YOLO_Annotated_Japanese_Roadsigns_512x512">YOLO_Annotated_Japanese_Roadsigns_512x512</a>
-<br> 
+<br>
+<br>
+Japanese RoadSigns <br>
+<img src="./asset/roadsigns_list.png"> 
 <br>
 
 <h3>3. Inspect tfrecord</h3>
