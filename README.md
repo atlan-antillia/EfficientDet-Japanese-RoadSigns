@@ -2,7 +2,7 @@
 Training and detection Japanese RoadSigns by EfficientDet
 
 <h2>
-EfficientDet Japanese RoadSigns (Updated: 2021/12/03)
+EfficientDet Japanese RoadSigns (Updated: 2022/02/01)
 </h2>
 
 This is a simple python example to train and detect Japanese RoadSigns based on 
