@@ -1,0 +1,2 @@
+ImageID, Label, Confidence, XMin, YMin, XMax, YMax
+gen_0_90.jpg,Maximum_Height_in_Meters,0.63,103,136,408,445

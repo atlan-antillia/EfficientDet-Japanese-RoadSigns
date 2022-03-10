@@ -1,0 +1,2 @@
+ImageID, Label, Confidence, XMin, YMin, XMax, YMax
+gen_0_12.jpg,School_Crossing,0.97,102,68,372,410

@@ -1,0 +1,2 @@
+ImageID, Label, Confidence, XMin, YMin, XMax, YMax
+gen_0_8998.jpg,Pedestrians_Only,0.94,93,149,419,464

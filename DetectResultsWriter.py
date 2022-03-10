@@ -25,7 +25,6 @@ class DetectResultsWriter(object):
   def __init__(self, output_image_path):
     self.output_image_path = output_image_path
  
-
   def write(self, detected_objects, objects_stats):
     OBJECTS = "_objects"
     STATS   = "_stats"
@@ -44,6 +43,43 @@ class DetectResultsWriter(object):
 
       for item in detected_objects:
         line = str(item).strip("()").replace("'", "") + NL
+        f.write(line)
+       
+    #2020/08/15 atlan: save the detected_objects as csv file
+    print("=== Writing objects_stats to: {}".format(objects_stats_path))
+
+
+  def write_withname(self, name, detected_objects, objects_stats):
+    OBJECTS = "_objects"
+    STATS   = "_stats"
+    CSV     = ".csv"
+    SEP     = ","
+    NL      = "\n"
+    detected_objects_path = self.output_image_path + OBJECTS + CSV
+    objects_stats_path    = self.output_image_path + STATS   + CSV
+
+    #2020/08/15 atlan: save the detected_objects as csv file
+    print("=== Writing detected_objects to: {}".format(detected_objects_path))
+    with open(detected_objects_path, mode='w') as f:
+      #2020/09/15 Write a header(title) line of csv.
+      header = "id, class, score, x, y, w, h" + NL
+      
+      header = "ImageID, Label, Confidence, XMin, YMin, XMax, YMax" + NL
+
+      f.write(header)
+
+      for item in detected_objects:
+        (id, label, score, x, y, w, h)=item
+
+        xmax = str(x + w)
+        ymax = str(y + h)
+        xmin = str(x)
+        ymin = str(y)
+        score = score.strip("%")
+        confidence = float(score)/100.0
+        confidence = str(round(confidence, 4))
+        line = name + SEP + label + SEP + confidence + SEP + xmin + SEP + ymin + SEP + xmax + SEP + ymax + NL
+
         f.write(line)
        
     #2020/08/15 atlan: save the detected_objects as csv file

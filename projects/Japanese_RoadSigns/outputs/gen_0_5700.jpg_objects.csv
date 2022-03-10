@@ -1,0 +1,2 @@
+ImageID, Label, Confidence, XMin, YMin, XMax, YMax
+gen_0_5700.jpg,Steep_Ascent_10%,0.72,104,136,403,405

@@ -1,0 +1,2 @@
+ImageID, Label, Confidence, XMin, YMin, XMax, YMax
+gen_0_9994.jpg,Straight_Ahead_Or_Right_Turn,0.47,115,159,385,410

@@ -1,0 +1,2 @@
+ImageID, Label, Confidence, XMin, YMin, XMax, YMax
+gen_0_180.jpg,Falling_Rocks,0.91,72,111,436,420

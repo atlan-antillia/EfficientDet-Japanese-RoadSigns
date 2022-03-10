@@ -1,0 +1,2 @@
+ImageID, Label, Confidence, XMin, YMin, XMax, YMax
+gen_0_1990.jpg,Crossroads,0.93,93,94,412,364

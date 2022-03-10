@@ -1,0 +1,2 @@
+ImageID, Label, Confidence, XMin, YMin, XMax, YMax
+gen_0_5115.jpg,Traffic_Lights_Ahead,0.9,93,93,414,344

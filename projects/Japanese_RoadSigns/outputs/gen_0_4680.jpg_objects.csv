@@ -1,0 +1,2 @@
+ImageID, Label, Confidence, XMin, YMin, XMax, YMax
+gen_0_4680.jpg,Road_Closed_To_Vehicles,0.85,122,77,387,337

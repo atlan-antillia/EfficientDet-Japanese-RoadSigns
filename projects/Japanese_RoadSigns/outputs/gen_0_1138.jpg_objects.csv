@@ -1,0 +1,2 @@
+ImageID, Label, Confidence, XMin, YMin, XMax, YMax
+gen_0_1138.jpg,Pedestrian_Crossing,0.91,116,49,361,354

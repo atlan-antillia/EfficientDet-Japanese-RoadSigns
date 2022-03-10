@@ -1,0 +1,2 @@
+ImageID, Label, Confidence, XMin, YMin, XMax, YMax
+gen_0_5509.jpg,No_Right_Turn_Crossing,0.95,100,26,406,370

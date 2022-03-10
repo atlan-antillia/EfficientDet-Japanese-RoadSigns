@@ -1,0 +1,2 @@
+ImageID, Label, Confidence, XMin, YMin, XMax, YMax
+gen_0_2500.jpg,No_Motorcycles_Or_Mopeds,0.95,106,120,406,404

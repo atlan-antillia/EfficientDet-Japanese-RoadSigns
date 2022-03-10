@@ -1,0 +1,2 @@
+ImageID, Label, Confidence, XMin, YMin, XMax, YMax
+gen_0_9474.jpg,Left_Lane_Ends,0.81,98,65,412,364

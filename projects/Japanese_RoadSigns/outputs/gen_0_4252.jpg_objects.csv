@@ -1,0 +1,2 @@
+ImageID, Label, Confidence, XMin, YMin, XMax, YMax
+gen_0_4252.jpg,TwoWay_Traffic_Ahead,0.58,120,92,390,355

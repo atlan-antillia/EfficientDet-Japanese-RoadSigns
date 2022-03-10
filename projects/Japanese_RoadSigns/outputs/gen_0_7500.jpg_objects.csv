@@ -1,0 +1,2 @@
+ImageID, Label, Confidence, XMin, YMin, XMax, YMax
+gen_0_7500.jpg,No_Parking,0.75,91,63,416,389

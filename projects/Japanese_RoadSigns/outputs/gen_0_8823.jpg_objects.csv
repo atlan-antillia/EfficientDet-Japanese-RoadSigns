@@ -1,0 +1,2 @@
+ImageID, Label, Confidence, XMin, YMin, XMax, YMax
+gen_0_8823.jpg,No_Motor_Vehicles_Except_Motorcycles_And_Mopeds,0.86,108,71,401,398

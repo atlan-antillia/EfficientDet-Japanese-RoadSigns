@@ -1,0 +1,2 @@
+ImageID, Label, Confidence, XMin, YMin, XMax, YMax
+gen_0_1007.jpg,Traffic_Circle,0.79,127,146,385,378

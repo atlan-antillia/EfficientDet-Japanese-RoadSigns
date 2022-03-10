@@ -1,0 +1,2 @@
+ImageID, Label, Confidence, XMin, YMin, XMax, YMax
+gen_0_1300.jpg,TwoStage_Right_Turn_For_Mopeds,0.76,85,57,429,401

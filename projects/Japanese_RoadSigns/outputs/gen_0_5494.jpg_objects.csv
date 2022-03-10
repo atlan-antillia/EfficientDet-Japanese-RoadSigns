@@ -1,0 +1,2 @@
+ImageID, Label, Confidence, XMin, YMin, XMax, YMax
+gen_0_5494.jpg,Turn_Left,0.72,101,132,414,454

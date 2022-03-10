@@ -1,0 +1,2 @@
+ImageID, Label, Confidence, XMin, YMin, XMax, YMax
+gen_0_916.jpg,Bicycles_Only,0.95,115,83,395,406

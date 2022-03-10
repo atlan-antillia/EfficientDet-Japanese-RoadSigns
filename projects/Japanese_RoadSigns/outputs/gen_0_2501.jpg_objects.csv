@@ -1,0 +1,2 @@
+ImageID, Label, Confidence, XMin, YMin, XMax, YMax
+gen_0_2501.jpg,Stop,0.94,102,85,403,357

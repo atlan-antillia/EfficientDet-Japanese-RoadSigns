@@ -1,0 +1,2 @@
+ImageID, Label, Confidence, XMin, YMin, XMax, YMax
+gen_0_6755.jpg,Minimum_Speed_Limit_50km,0.92,77,57,433,360

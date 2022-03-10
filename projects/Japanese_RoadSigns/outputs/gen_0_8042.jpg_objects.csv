@@ -1,0 +1,2 @@
+ImageID, Label, Confidence, XMin, YMin, XMax, YMax
+gen_0_8042.jpg,No_Motor_Vehicles_Except_Motorcycles_And_Mopeds,0.9,100,114,413,430

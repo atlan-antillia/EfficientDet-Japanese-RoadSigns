@@ -1,0 +1,2 @@
+ImageID, Label, Confidence, XMin, YMin, XMax, YMax
+gen_0_6096.jpg,Traffic_Merges_From_Left,0.55,101,117,409,372
