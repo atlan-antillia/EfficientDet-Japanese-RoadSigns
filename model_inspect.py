@@ -463,9 +463,15 @@ class ModelInspector(object):
       elif runmode == 'infer':
         self.inference_single_image(kwargs['input_image'],
                                     kwargs['output_image_dir'], **config_dict)
+        #2022/03/11 Create output_image_dir
+        if os.path.exists(kwargs['output_image_dir'])==False:
+          os.makedirs(kwargs['output_image_dir'])
       elif runmode == 'saved_model_infer':
         self.saved_model_inference(kwargs['input_image'],
                                    kwargs['output_image_dir'], **config_dict)
+        #2022/03/11 Create output_image_dir
+        if os.path.exists(kwargs['output_image_dir'])==False:
+          os.makedirs(kwargs['output_image_dir'])
       elif runmode == 'saved_model_video':
         self.saved_model_video(kwargs['input_video'], kwargs['output_video'],
                                **config_dict)
