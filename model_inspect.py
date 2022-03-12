@@ -161,6 +161,9 @@ class ModelInspector(object):
   def saved_model_inference(self, image_path_pattern, output_dir, **kwargs):
     """Perform inference for the given saved model."""
     print("=== ModelInspector.saved_model_inference -----------")
+    if os.path.exists(output_dir) == False:
+      os.makedirs(output_dir)
+      
     driver = inference.ServingDriver(
         self.model_name,
         self.ckpt_path,
