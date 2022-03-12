@@ -1,4 +1,3 @@
-mkdir .\projects\Japanese_RoadSigns\outputs
 python model_inspect.py ^
   --runmode=saved_model_infer ^
   --model_name=efficientdet-d0 ^
