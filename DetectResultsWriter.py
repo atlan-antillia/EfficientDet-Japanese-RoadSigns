@@ -48,8 +48,8 @@ class DetectResultsWriter(object):
     #2020/08/15 atlan: save the detected_objects as csv file
     print("=== Writing objects_stats to: {}".format(objects_stats_path))
 
-
-  def write_withname(self, name, detected_objects, objects_stats):
+  # 2022/03/14 Modified to write detect_objects data into all_prediction_file
+  def write_withname(self, name, detected_objects, objects_stats, all_prediction_file):
     OBJECTS = "_objects"
     STATS   = "_stats"
     CSV     = ".csv"
@@ -57,16 +57,17 @@ class DetectResultsWriter(object):
     NL      = "\n"
     detected_objects_path = self.output_image_path + OBJECTS + CSV
     objects_stats_path    = self.output_image_path + STATS   + CSV
+    #with open(all_predictions_csv, "a")  
 
     #2020/08/15 atlan: save the detected_objects as csv file
     print("=== Writing detected_objects to: {}".format(detected_objects_path))
     with open(detected_objects_path, mode='w') as f:
       #2020/09/15 Write a header(title) line of csv.
-      header = "id, class, score, x, y, w, h" + NL
-      
-      header = "ImageID, Label, Confidence, XMin, YMin, XMax, YMax" + NL
+      #header = "id, class, score, x, y, w, h" + NL
+      #2022/03/10 Modifed header in the following format
+      HEADER = "ImageID, Label, Confidence, XMin, YMin, XMax, YMax" + NL
 
-      f.write(header)
+      f.write(HEADER)
 
       for item in detected_objects:
         (id, label, score, x, y, w, h)=item
@@ -81,7 +82,8 @@ class DetectResultsWriter(object):
         line = name + SEP + label + SEP + confidence + SEP + xmin + SEP + ymin + SEP + xmax + SEP + ymax + NL
 
         f.write(line)
-       
+        all_prediction_file.write(line)
+        
     #2020/08/15 atlan: save the detected_objects as csv file
     print("=== Writing objects_stats to: {}".format(objects_stats_path))
 
